@@ -2,6 +2,7 @@ import { Client } from "@notionhq/client";
 import { CreatePageParameters } from "@notionhq/client/build/src/api-endpoints";
 
 async function main() {
+
   const databaseId = process.env.NOTION_DATABASE_ID;
   if (!databaseId) {
     console.error("NOTION_DATABASE_ID が設定されていません");
