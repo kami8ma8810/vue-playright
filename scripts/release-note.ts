@@ -18,6 +18,7 @@ async function main() {
     const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
     // Labels の取得
+
     const labels = process.env.PR_LABELS ? JSON.parse(process.env.PR_LABELS) : [];
     const labelNames = labels.map((label: { name: string }) => ({ name: label.name }));
 
@@ -76,4 +77,4 @@ async function main() {
   }
 }
 
-main(); 
+main();
