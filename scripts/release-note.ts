@@ -52,7 +52,7 @@ async function main() {
 
     // FIXME: 型エラー
     await notion.pages.create(params);
-    console.log("Successfully created release note in Notion");
+    console.log("Notion にリリースノートを作成しました");
   } catch (e) {
     console.error("エラー:", e);
     process.exit(1);
