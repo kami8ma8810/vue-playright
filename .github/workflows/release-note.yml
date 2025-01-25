@@ -27,8 +27,7 @@ jobs:
           echo "PR_URL=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
           echo "PR_TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
           echo "PR_BODY=$(echo '${{ github.event.pull_request.body }}' | base64)" >> $GITHUB_ENV
-          labels=$(echo '${{ toJSON(github.event.pull_request.labels) }}' | jq -r '[.[].name] | join(",")')
-          echo "PR_LABELS=${labels}" >> $GITHUB_ENV
+          echo "PR_LABELS=$LABELS_JSON" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: bun install
