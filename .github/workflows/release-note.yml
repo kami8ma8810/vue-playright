@@ -3,6 +3,7 @@ name: Release Note to Notion
 on:
   pull_request:
     types: [closed]
+    # トリガーとなるマージ先のブランチ
     branches:
       - main
 
