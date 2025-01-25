@@ -19,7 +19,7 @@ async function main() {
         emoji: "🚀"
       },
       properties: {
-        Title: {
+        "Pull Request Title": {
           title: [
             {
               text: {
@@ -28,13 +28,22 @@ async function main() {
             },
           ],
         },
-        "リリース日": {
+        "Description": {
+          rich_text: [
+            {
+              text: {
+                content: prBody,
+              },
+            },
+          ],
+        },
+        "Created Date": {
           date: {
             start: new Date().toISOString(),
             time_zone: "Asia/Tokyo",
           },
         },
-        URL: {
+        "URL": {
           url: process.env.PR_URL,
         },
       },
