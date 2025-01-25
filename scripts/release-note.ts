@@ -5,6 +5,11 @@ async function main() {
   try {
     const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
+    // Base64でエンコードされた本文をデコード
+    const prBody = process.env.PR_BODY
+      ? Buffer.from(process.env.PR_BODY, 'base64').toString()
+      : "No description";
+
     const params = {
       parent: {
         database_id: process.env.NOTION_DATABASE_ID,
@@ -33,7 +38,7 @@ async function main() {
           url: process.env.PR_URL,
         },
       },
-      children: markdownToBlocks(process.env.PR_BODY || "No description"),
+      children: markdownToBlocks(prBody),
     };
 
     await notion.pages.create(params);
