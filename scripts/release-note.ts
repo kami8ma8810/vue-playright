@@ -41,6 +41,7 @@ async function main() {
       children: markdownToBlocks(prBody),
     };
 
+    // FIXME: 型エラー
     await notion.pages.create(params);
     console.log("Successfully created release note in Notion");
   } catch (e) {
