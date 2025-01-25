@@ -44,6 +44,7 @@ async function main() {
             },
           ],
         },
+        // Labels は複数選択可能なので multi_select を使用
         "Labels": {
           multi_select: labelNames,
         },
