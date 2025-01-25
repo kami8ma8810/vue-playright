@@ -21,6 +21,7 @@ jobs:
         with:
           bun-version: latest
 
+      # 出力したい情報を環境変数に設定
       - name: Register PR detail
         run: |
           echo "REPOSITORY_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
