@@ -16,6 +16,7 @@ async function main() {
   }
 
   try {
+
     const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
     // Labels の取得
