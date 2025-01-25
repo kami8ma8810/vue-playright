@@ -1,7 +1,19 @@
 import { Client } from "@notionhq/client";
-import { markdownToBlocks } from "@tryfabric/martian";
+import { CreatePageParameters } from "@notionhq/client/build/src/api-endpoints";
 
 async function main() {
+  const databaseId = process.env.NOTION_DATABASE_ID;
+  if (!databaseId) {
+    console.error("NOTION_DATABASE_ID が設定されていません");
+    process.exit(1);
+  }
+
+  const githubUrl = process.env.PR_URL;
+  if (!githubUrl) {
+    console.error("Pull Request URL がありません");
+    process.exit(1);
+  }
+
   try {
     const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
@@ -10,9 +22,9 @@ async function main() {
       ? Buffer.from(process.env.PR_BODY, 'base64').toString()
       : "No description";
 
-    const params = {
+    const params: CreatePageParameters = {
       parent: {
-        database_id: process.env.NOTION_DATABASE_ID,
+        database_id: databaseId,
       },
       icon: {
         type: "emoji",
@@ -44,13 +56,11 @@ async function main() {
           },
         },
         "URL": {
-          url: process.env.PR_URL,
+          url: githubUrl,
         },
       },
-      children: markdownToBlocks(prBody),
     };
 
-    // FIXME: 型エラー
     await notion.pages.create(params);
     console.log("Notion にリリースノートを作成しました");
   } catch (e) {
