@@ -21,7 +21,7 @@ async function main() {
     const labels = process.env.PR_LABELS ? JSON.parse(process.env.PR_LABELS) : [];
     const labelNames = labels.map((label: { name: string }) => ({ name: label.name }));
 
-    // Base64でエンコードされた本文をデコード
+    // Base64 でエンコードされた本文をデコード
     const prBody = process.env.PR_BODY
       ? Buffer.from(process.env.PR_BODY, 'base64').toString()
       : "No description";
