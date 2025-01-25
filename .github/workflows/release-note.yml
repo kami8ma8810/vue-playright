@@ -21,14 +21,13 @@ jobs:
         with:
           bun-version: latest
 
-      # 出力したい情報を環境変数に設定
       - name: Register PR detail
         run: |
           echo "REPOSITORY_NAME=${{ github.event.repository.name }}" >> $GITHUB_ENV
           echo "PR_URL=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
           echo "PR_TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
           echo "PR_BODY=$(echo '${{ github.event.pull_request.body }}' | base64)" >> $GITHUB_ENV
-          echo "PR_LABELS=$(echo '${{ toJSON(github.event.pull_request.labels) }}')" >> $GITHUB_ENV
+          echo "PR_LABELS=${{ toJSON(github.event.pull_request.labels) }}" >> $GITHUB_ENV
 
       - name: Install dependencies
         run: bun install
