@@ -28,7 +28,6 @@ jobs:
           echo "PR_URL=${{ github.event.pull_request.html_url }}" >> $GITHUB_ENV
           echo "PR_TITLE=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
           echo "PR_BODY=$(echo '${{ github.event.pull_request.body }}' | base64)" >> $GITHUB_ENV
-          # JSONを1行に圧縮して設定
           echo "PR_LABELS=$(echo '${{ toJSON(github.event.pull_request.labels) }}' | tr -d '\n')" >> $GITHUB_ENV
 
       - name: Install dependencies
