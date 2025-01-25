@@ -19,9 +19,7 @@ async function main() {
     const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
     // Labels の取得
-
-    const labels = process.env.PR_LABELS ? JSON.parse(process.env.PR_LABELS) : [];
-    const labelNames = labels.map((label: { name: string }) => ({ name: label.name }));
+    const labels = process.env.PR_LABELS ? process.env.PR_LABELS.split(',').map(name => ({ name })) : [];
 
     // Base64 でエンコードされた本文をデコード
     const prBody = process.env.PR_BODY
@@ -47,7 +45,7 @@ async function main() {
           ],
         },
         "Labels": {
-          multi_select: labelNames,
+          multi_select: labels,
         },
         "Description": {
           rich_text: [
